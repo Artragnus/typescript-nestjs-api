@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { NotFoundError } from 'src/errors';
 
 @Injectable()
 export class UsersService {
@@ -17,10 +18,16 @@ export class UsersService {
     return this.prismaService.user.findMany();
   }
 
-  findOne(id: string) {
-    return this.prismaService.user.findUnique({
-      where: { id },
-    });
+  async findOne(id: string) {
+    try {
+      return await this.prismaService.user.findUniqueOrThrow({
+        where: { id },
+      });
+    } catch (e) {
+      if (e.code === 'P2025') {
+        throw new NotFoundError(`User with id ${id} not found`);
+      }
+    }
   }
 
   update(id: string, updateUserDto: UpdateUserDto) {
