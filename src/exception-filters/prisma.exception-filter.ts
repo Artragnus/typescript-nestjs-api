@@ -11,9 +11,9 @@ export class PrismaExceptionFilter implements ExceptionFilter {
     const response = ctx.getResponse();
 
     if (exception.code === 'P2002') {
-      return response.status(400).json({
-        statusCode: 400,
-        message: exception.message,
+      return response.status(422).json({
+        statusCode: 422,
+        message: 'Unprocessable Entity',
       });
     }
 
