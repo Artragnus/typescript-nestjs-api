@@ -1,17 +1,30 @@
+import * as bcrypt from 'bcrypt';
 import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { NotFoundError } from 'src/errors';
+import { BadRequestError, NotFoundError } from 'src/errors';
 
 @Injectable()
 export class UsersService {
   constructor(private prismaService: PrismaService) {}
 
-  create(createUserDto: CreateUserDto) {
-    return this.prismaService.user.create({
-      data: createUserDto,
-    });
+  async create(createUserDto: CreateUserDto) {
+    try {
+      const hash = await bcrypt.hash(createUserDto.password, 10);
+      const { password: _, ...props } = createUserDto;
+      const data = {
+        ...props,
+        password: hash,
+      };
+      return await this.prismaService.user.create({
+        data,
+      });
+    } catch (e) {
+      if (e.code === 'P2002') {
+        throw new BadRequestError('User with this email already exists');
+      }
+    }
   }
 
   findAll() {
@@ -37,9 +50,15 @@ export class UsersService {
     });
   }
 
-  remove(id: string) {
-    return this.prismaService.user.delete({
-      where: { id },
-    });
+  async remove(id: string) {
+    try {
+      return await this.prismaService.user.delete({
+        where: { id },
+      });
+    } catch (e) {
+      if (e.code === 'P2025') {
+        throw new NotFoundError(`User with id ${id} not found`);
+      }
+    }
   }
 }
