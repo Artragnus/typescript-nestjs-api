@@ -30,6 +30,12 @@ export class UsersService {
     });
   }
 
+  async findOneByEmail(email: string) {
+    return await this.prismaService.user.findUniqueOrThrow({
+      where: { email },
+    });
+  }
+
   async update(id: string, updateUserDto: UpdateUserDto) {
     const { password: _password, ...props } = updateUserDto;
     const data = _password
@@ -49,5 +55,14 @@ export class UsersService {
     return this.prismaService.user.delete({
       where: { id },
     });
+  }
+
+  async validateUser(email: string, password: string) {
+    const user = await this.findOneByEmail(email);
+    const isMatch = await bcrypt.compare(password, user?.password);
+    if (!isMatch) {
+      return null;
+    }
+    return user;
   }
 }
