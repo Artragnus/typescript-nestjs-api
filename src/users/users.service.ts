@@ -1,16 +1,22 @@
+import * as bcrypt from 'bcrypt';
 import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { NotFoundError } from 'src/errors';
 
 @Injectable()
 export class UsersService {
   constructor(private prismaService: PrismaService) {}
 
-  create(createUserDto: CreateUserDto) {
+  async create(createUserDto: CreateUserDto) {
+    const { password: _password, ...props } = createUserDto;
+
+    const data = {
+      ...props,
+      password: await bcrypt.hash(_password, 10),
+    };
     return this.prismaService.user.create({
-      data: createUserDto,
+      data,
     });
   }
 
@@ -19,21 +25,29 @@ export class UsersService {
   }
 
   async findOne(id: string) {
-    try {
-      return await this.prismaService.user.findUniqueOrThrow({
-        where: { id },
-      });
-    } catch (e) {
-      if (e.code === 'P2025') {
-        throw new NotFoundError(`User with id ${id} not found`);
-      }
-    }
+    return await this.prismaService.user.findUniqueOrThrow({
+      where: { id },
+    });
   }
 
-  update(id: string, updateUserDto: UpdateUserDto) {
+  async findOneByEmail(email: string) {
+    return await this.prismaService.user.findUniqueOrThrow({
+      where: { email },
+    });
+  }
+
+  async update(id: string, updateUserDto: UpdateUserDto) {
+    const { password: _password, ...props } = updateUserDto;
+    const data = _password
+      ? {
+          ...props,
+          password: await bcrypt.hash(_password, 10),
+        }
+      : updateUserDto;
+
     return this.prismaService.user.update({
       where: { id },
-      data: updateUserDto,
+      data,
     });
   }
 
@@ -41,5 +55,14 @@ export class UsersService {
     return this.prismaService.user.delete({
       where: { id },
     });
+  }
+
+  async validateUser(email: string, password: string) {
+    const user = await this.findOneByEmail(email);
+    const isMatch = await bcrypt.compare(password, user?.password);
+    if (!isMatch) {
+      return null;
+    }
+    return user;
   }
 }
