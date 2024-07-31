@@ -56,13 +56,4 @@ export class UsersService {
       where: { id },
     });
   }
-
-  async validateUser(email: string, password: string) {
-    const user = await this.findOneByEmail(email);
-    const isMatch = await bcrypt.compare(password, user?.password);
-    if (!isMatch) {
-      return null;
-    }
-    return user;
-  }
 }
