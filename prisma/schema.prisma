@@ -23,10 +23,10 @@ model User {
   @@map("users")
 }
 
-model AcccountCategory {
+model AccountCategory {
   id            Int      @id @unique @default(autoincrement())
   name          String   @db.VarChar(255)
-  description   String   @db.Text()
+  description   String?   @db.Text()
 
   @@map("account_categories")
 }

@@ -1,26 +1,23 @@
 import { Injectable } from '@nestjs/common';
 import { CreateAccountCategoryDto } from './dto/create-account-category.dto';
-import { UpdateAccountCategoryDto } from './dto/update-account-category.dto';
+import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class AccountCategoriesService {
+  constructor(private prismaService: PrismaService) {}
   create(createAccountCategoryDto: CreateAccountCategoryDto) {
-    return 'This action adds a new accountCategory';
+    return this.prismaService.accountCategory.create({
+      data: createAccountCategoryDto,
+    });
   }
 
   findAll() {
-    return `This action returns all accountCategories`;
+    return this.prismaService.accountCategory.findMany();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} accountCategory`;
-  }
-
-  update(id: number, updateAccountCategoryDto: UpdateAccountCategoryDto) {
-    return `This action updates a #${id} accountCategory`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} accountCategory`;
+    return this.prismaService.accountCategory.findUniqueOrThrow({
+      where: { id },
+    });
   }
 }
