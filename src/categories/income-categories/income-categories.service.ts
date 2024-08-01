@@ -17,6 +17,8 @@ export class IncomeCategoriesService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} incomeCategory`;
+    return this.prismaService.incomeCategory.findUnique({
+      where: { id },
+    });
   }
 }
