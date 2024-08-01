@@ -14,32 +14,34 @@ datasource db {
 }
 
 model User {
-  id            String    @id @unique @default(uuid())
-  email         String    @unique
-  name          String    @db.VarChar(255)
-  password      String
-  createdAt     DateTime  @default(now())
-  accounts      Account[]
-  
+  id        String    @id @unique @default(uuid())
+  email     String    @unique
+  name      String    @db.VarChar(255)
+  password  String
+  createdAt DateTime  @default(now())
+  accounts  Account[]
+
   @@map("users")
 }
 
 model AccountCategory {
-  id            Int      @id @unique @default(autoincrement())
-  name          String   @db.VarChar(255)
-  description   String?  @db.Text()
+  id          Int       @id @unique @default(autoincrement())
+  name        String    @db.VarChar(255)
+  description String?   @db.Text()
+  accounts    Account[]
 
   @@map("account_categories")
 }
 
 model Account {
-  id            Int      @id @unique @default(autoincrement())
-  balance       Int      @default(0)
-  description   String   @db.Text()
-  categoryId    Int
-  user          User     @relation(fields: [userId], references: [id])
-  userId        String  
-  createdAt     DateTime @default(now())
+  id          Int             @id @unique @default(autoincrement())
+  balance     Int             @default(0)
+  description String          @db.Text()
+  category    AccountCategory @relation(fields: [categoryId], references: [id])
+  categoryId  Int
+  user        User            @relation(fields: [userId], references: [id])
+  userId      String
+  createdAt   DateTime        @default(now())
 
   @@map("accounts")
 }
