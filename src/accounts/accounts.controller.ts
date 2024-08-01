@@ -12,7 +12,6 @@ import {
 import { AccountsService } from './accounts.service';
 import { CreateAccountDto } from './dto/create-account.dto';
 import { UpdateAccountDto } from './dto/update-account.dto';
-import { Public } from 'src/auth/decorators/public.decorator';
 
 @Controller('accounts')
 export class AccountsController {
