@@ -10,6 +10,7 @@ import { ConfigModule } from '@nestjs/config';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
 import { APP_GUARD } from '@nestjs/core';
 import { ExpenseCategoriesModule } from './categories/expense-categories/expense-categories.module';
+import { ExpenseModule } from './expense/expense.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { ExpenseCategoriesModule } from './categories/expense-categories/expense
     AccountCategoriesModule,
     AccountsModule,
     ExpenseCategoriesModule,
+    ExpenseModule,
   ],
   controllers: [AppController],
   providers: [
