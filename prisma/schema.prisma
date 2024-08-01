@@ -42,7 +42,7 @@ model Account {
   categoryId  Int
   user        User            @relation(fields: [userId], references: [id])
   userId      String
-  createdAt   DateTime        @default(now())
+  date        DateTime        @default(now())
   Expense     Expense[]
 
   @@map("accounts")
