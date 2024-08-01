@@ -23,6 +23,9 @@ async function main() {
       }
     }
   }
+
+  {
+  }
 }
 
 main()
