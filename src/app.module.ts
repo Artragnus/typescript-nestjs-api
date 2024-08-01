@@ -11,6 +11,7 @@ import { ExpenseCategoriesModule } from './categories/expense-categories/expense
 import { ExpensesModule } from './expenses/expenses.module';
 import { AccountCategoriesModule } from './categories/account-categories/account-categories.module';
 import { ConfigModule } from '@nestjs/config';
+import { IncomeCategoriesModule } from './categories/income-categories/income-categories.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { ConfigModule } from '@nestjs/config';
     AccountsModule,
     ExpenseCategoriesModule,
     ExpensesModule,
+    IncomeCategoriesModule,
   ],
   controllers: [AppController],
   providers: [
