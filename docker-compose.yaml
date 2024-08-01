@@ -8,4 +8,4 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: nestjs
     ports:
-      - 5555:5432
+      - 5432:5432
