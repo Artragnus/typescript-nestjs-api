@@ -8,7 +8,7 @@ import { AccountsModule } from './accounts/accounts.module';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
 import { APP_GUARD } from '@nestjs/core';
 import { ExpenseCategoriesModule } from './categories/expense-categories/expense-categories.module';
-import { ExpenseModule } from './expense/expense.module';
+import { ExpensesModule } from './expenses/expenses.module';
 import { AccountCategoriesModule } from './categories/account-categories/account-categories.module';
 import { ConfigModule } from '@nestjs/config';
 
@@ -21,7 +21,7 @@ import { ConfigModule } from '@nestjs/config';
     AccountCategoriesModule,
     AccountsModule,
     ExpenseCategoriesModule,
-    ExpenseModule,
+    ExpensesModule,
   ],
   controllers: [AppController],
   providers: [

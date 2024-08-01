@@ -6,16 +6,15 @@ import {
   Patch,
   Param,
   Delete,
-  Request,
 } from '@nestjs/common';
-import { ExpenseService } from './expense.service';
+import { ExpensesService } from './expenses.service';
 import { CreateExpenseDto } from './dto/create-expense.dto';
 import { UpdateExpenseDto } from './dto/update-expense.dto';
 import { User } from 'src/auth/decorators/user.decorator';
 
-@Controller('expense')
-export class ExpenseController {
-  constructor(private readonly expenseService: ExpenseService) {}
+@Controller('expenses')
+export class ExpensesController {
+  constructor(private readonly expenseService: ExpensesService) {}
 
   @Post()
   create(@Body() createExpenseDto: CreateExpenseDto, @User() user) {

@@ -4,7 +4,7 @@ import { UpdateExpenseDto } from './dto/update-expense.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
-export class ExpenseService {
+export class ExpensesService {
   constructor(private prismaService: PrismaService) {}
   create(createExpenseDto: CreateExpenseDto, userId: string) {
     return this.prismaService.expense.create({

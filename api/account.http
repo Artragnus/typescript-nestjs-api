@@ -1,6 +1,6 @@
 POST http://localhost:3000/accounts
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQzZjRkOTU2LTc2MGQtNGFjZC04OGNmLTkzZGRiYjA1Y2I3OSIsImlhdCI6MTcyMjUzMTM0OSwiZXhwIjoxNzIyNTQyMTQ5fQ.K8YJs9mIr4uKuS1zeX-hwEeEitucM0ACDRYj_rQ9UmQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRmYzNiZmUzLTFlZDYtNDE1ZS1hMDlkLWEwNWVlNTBiOTg0YSIsImlhdCI6MTcyMjU0NzQ3MywiZXhwIjoxNzIyNTU4MjczfQ._uRt9Hs4L6elcJ3w3C9UQvll4G_kDT8YLlDFvpgzJ0o
 
 {
   "balance": 0,

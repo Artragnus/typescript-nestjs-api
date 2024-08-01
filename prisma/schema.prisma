@@ -69,3 +69,9 @@ model Expense {
   user        User            @relation(fields: [userId], references: [id])
   userId      String
 }
+
+model IncomeCategory {
+  id          Int     @id @unique @default(autoincrement())
+  name        String  @db.VarChar(255)
+  description String? @db.Text()
+}
