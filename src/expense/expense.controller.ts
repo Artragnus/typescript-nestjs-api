@@ -11,23 +11,24 @@ import {
 import { ExpenseService } from './expense.service';
 import { CreateExpenseDto } from './dto/create-expense.dto';
 import { UpdateExpenseDto } from './dto/update-expense.dto';
+import { User } from 'src/auth/decorators/user.decorator';
 
 @Controller('expense')
 export class ExpenseController {
   constructor(private readonly expenseService: ExpenseService) {}
 
   @Post()
-  create(@Body() createExpenseDto: CreateExpenseDto, @Request() req) {
+  create(@Body() createExpenseDto: CreateExpenseDto, @User() user) {
     const data = {
       ...createExpenseDto,
-      userId: req.user.id,
+      userId: user.id,
     };
     return this.expenseService.create(data);
   }
 
   @Get()
-  findAll() {
-    return this.expenseService.findAll();
+  findAll(@User() user) {
+    return this.expenseService.findAll(user.id);
   }
 
   @Get(':id')

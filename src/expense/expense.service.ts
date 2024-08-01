@@ -12,7 +12,7 @@ export class ExpenseService {
     });
   }
 
-  findAll() {
+  findAll(userId: string) {
     return this.prismaService.expense.findMany();
   }
 

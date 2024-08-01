@@ -12,9 +12,9 @@ export class AccountsService {
     });
   }
 
-  findAll(id: string) {
+  findAll(userId: string) {
     return this.prismaService.account.findMany({
-      where: { userId: id },
+      where: { userId },
     });
   }
 
