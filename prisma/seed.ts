@@ -25,6 +25,32 @@ async function main() {
   }
 
   {
+    const categories = [
+      { name: 'Casa' },
+      { name: 'Educação' },
+      { name: 'Eletrônicos' },
+      { name: 'Lazer' },
+      { name: 'Outros' },
+      { name: 'Restaurante' },
+      { name: 'Saúde' },
+      { name: 'Serviços' },
+      { name: 'Supermercado' },
+      { name: 'Transporte' },
+      { name: 'Vestuário' },
+      { name: 'Viagem' },
+    ];
+
+    for (const category of categories) {
+      const isCategoryExist = await prisma.expenseCategory.findFirst({
+        where: category,
+      });
+
+      if (!isCategoryExist) {
+        await prisma.expenseCategory.create({
+          data: category,
+        });
+      }
+    }
   }
 }
 
