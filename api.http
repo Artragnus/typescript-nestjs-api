@@ -13,8 +13,8 @@ Content-Type: application/json
 
 {
   "name": "John Doe",
-  "email": "testeauth@hotmail.com",
-  "password": "password"
+  "email": "auth@hotmail.com",
+  "password": "auth"
 }
 
 ###
@@ -33,10 +33,14 @@ DELETE http://localhost:3000/users/28bb0ad8-3a6f-4a32-b479-59973e79ba4e
 
 ### AUTH
 
-POST http://localhost:3000/login
+POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
-  "email": "testeauth@hotmail.com",
-  "password": "teste"
+  "email": "auth@hotmail.com",
+  "password": "auth"
 }
+
+### 
+
+GET http://localhost:3000/profile
