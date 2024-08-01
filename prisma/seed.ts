@@ -52,6 +52,28 @@ async function main() {
       }
     }
   }
+
+  {
+    const categories = [
+      { name: 'Investimento' },
+      { name: 'Outros' },
+      { name: 'Prêmio' },
+      { name: 'Presente' },
+      { name: 'Sálario' },
+    ];
+
+    for (const category of categories) {
+      const isCategoryExist = await prisma.incomeCategory.findFirst({
+        where: category,
+      });
+
+      if (!isCategoryExist) {
+        await prisma.incomeCategory.create({
+          data: category,
+        });
+      }
+    }
+  }
 }
 
 main()
