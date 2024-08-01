@@ -1,0 +1,23 @@
+GET http://localhost:3000/users
+###
+GET http://localhost:3000/users/1
+###
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "email": "auth@hotmail.com",
+  "password": "auth"
+}
+###
+PATCH http://localhost:3000/users/0f55dc2f-1980-45de-9ec6-c4aa038d4e03
+Content-Type: application/json
+{
+  "name": "John Doe",
+  "email": "teste@gmail.com"
+}
+###
+DELETE http://localhost:3000/users/28bb0ad8-3a6f-4a32-b479-59973e79ba4e
+
+

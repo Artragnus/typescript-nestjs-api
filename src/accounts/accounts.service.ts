@@ -12,26 +12,28 @@ export class AccountsService {
     });
   }
 
-  findAll() {
-    return this.prismaService.account.findMany();
-  }
-
-  findOne(id: number) {
-    return this.prismaService.account.findUniqueOrThrow({
-      where: { id },
+  findAll(id: string) {
+    return this.prismaService.account.findMany({
+      where: { userId: id },
     });
   }
 
-  update(id: number, updateAccountDto: UpdateAccountDto) {
+  findOne(id: number, userId: string) {
+    return this.prismaService.account.findUniqueOrThrow({
+      where: { id, userId },
+    });
+  }
+
+  update(id: number, updateAccountDto: UpdateAccountDto, userId: string) {
     return this.prismaService.account.update({
-      where: { id },
+      where: { id, userId },
       data: updateAccountDto,
     });
   }
 
-  remove(id: number) {
+  remove(id: number, userId: string) {
     return this.prismaService.account.delete({
-      where: { id },
+      where: { id, userId },
     });
   }
 }

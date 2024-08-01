@@ -1,0 +1,13 @@
+POST http://localhost:3000/accounts
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQzZjRkOTU2LTc2MGQtNGFjZC04OGNmLTkzZGRiYjA1Y2I3OSIsImlhdCI6MTcyMjUzMTM0OSwiZXhwIjoxNzIyNTQyMTQ5fQ.K8YJs9mIr4uKuS1zeX-hwEeEitucM0ACDRYj_rQ9UmQ
+
+{
+  "balance": 0,
+  "description": "Conta corrente",
+  "categoryId": 1
+}
+
+
+####
+GET http://localhost:3000/accounts
