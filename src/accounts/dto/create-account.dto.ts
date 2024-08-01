@@ -1,18 +1,21 @@
 import {
+  IsInt,
   IsNotEmpty,
   IsNumber,
   IsOptional,
   IsPositive,
   IsString,
+  Min,
 } from 'class-validator';
 
 export class CreateAccountDto {
   userId: string;
 
-  @IsPositive()
+  @IsInt()
+  @Min(0)
   @IsNumber()
   @IsOptional()
-  balance?: number | 0;
+  balance?: number;
 
   @IsString()
   @IsNotEmpty()
