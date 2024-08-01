@@ -12,6 +12,7 @@ import {
 import { AccountsService } from './accounts.service';
 import { CreateAccountDto } from './dto/create-account.dto';
 import { UpdateAccountDto } from './dto/update-account.dto';
+import { User } from 'src/auth/decorators/user.decorator';
 
 @Controller('accounts')
 export class AccountsController {
@@ -26,26 +27,26 @@ export class AccountsController {
   }
 
   @Get()
-  findAll(@Request() req) {
-    return this.accountsService.findAll(req.user.id);
+  findAll(@User() user) {
+    return this.accountsService.findAll(user.id);
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string, @Request() req) {
-    return this.accountsService.findOne(+id, req.user.id);
+  findOne(@Param('id') id: string, @User() user) {
+    return this.accountsService.findOne(+id, user.id);
   }
 
   @Patch(':id')
   update(
     @Param('id') id: string,
     @Body() updateAccountDto: UpdateAccountDto,
-    @Request() req,
+    @User() user,
   ) {
-    return this.accountsService.update(+id, updateAccountDto, req.user.id);
+    return this.accountsService.update(+id, updateAccountDto, user.id);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string, @Request() req) {
-    return this.accountsService.remove(+id, req.user.id);
+  remove(@Param('id') id: string, @User() user) {
+    return this.accountsService.remove(+id, user.id);
   }
 }
