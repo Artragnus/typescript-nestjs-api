@@ -6,32 +6,34 @@ import { PrismaService } from 'src/prisma/prisma.service';
 @Injectable()
 export class ExpenseService {
   constructor(private prismaService: PrismaService) {}
-  create(createExpenseDto: CreateExpenseDto) {
+  create(createExpenseDto: CreateExpenseDto, userId: string) {
     return this.prismaService.expense.create({
-      data: createExpenseDto,
+      data: { ...createExpenseDto, userId },
     });
   }
 
   findAll(userId: string) {
-    return this.prismaService.expense.findMany();
-  }
-
-  findOne(id: string) {
-    return this.prismaService.expense.findUniqueOrThrow({
-      where: { id },
+    return this.prismaService.expense.findMany({
+      where: { userId },
     });
   }
 
-  update(id: string, updateExpenseDto: UpdateExpenseDto) {
+  findOne(id: string, userId: string) {
+    return this.prismaService.expense.findUniqueOrThrow({
+      where: { id, userId },
+    });
+  }
+
+  update(id: string, updateExpenseDto: UpdateExpenseDto, userId: string) {
     return this.prismaService.expense.update({
-      where: { id },
+      where: { id, userId },
       data: updateExpenseDto,
     });
   }
 
-  remove(id: string) {
+  remove(id: string, userId: string) {
     return this.prismaService.expense.delete({
-      where: { id },
+      where: { id, userId },
     });
   }
 }
