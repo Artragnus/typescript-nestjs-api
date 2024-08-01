@@ -2,23 +2,25 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 async function main() {
-  const accountCategories = [
-    { name: 'Checking Account' },
-    { name: 'Money' },
-    { name: 'Savings' },
-    { name: 'Investment' },
-    { name: 'Others' },
-  ];
+  {
+    const categories = [
+      { name: 'Checking Account' },
+      { name: 'Money' },
+      { name: 'Savings' },
+      { name: 'Investment' },
+      { name: 'Others' },
+    ];
 
-  for (const category of accountCategories) {
-    const isCategoryExist = await prisma.accountCategory.findFirst({
-      where: category,
-    });
-
-    if (!isCategoryExist) {
-      await prisma.accountCategory.create({
-        data: category,
+    for (const category of categories) {
+      const isCategoryExist = await prisma.accountCategory.findFirst({
+        where: category,
       });
+
+      if (!isCategoryExist) {
+        await prisma.accountCategory.create({
+          data: category,
+        });
+      }
     }
   }
 }
