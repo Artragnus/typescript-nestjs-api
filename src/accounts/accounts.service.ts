@@ -1,11 +1,15 @@
 import { Injectable } from '@nestjs/common';
 import { CreateAccountDto } from './dto/create-account.dto';
 import { UpdateAccountDto } from './dto/update-account.dto';
+import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class AccountsService {
+  constructor(private prismaService: PrismaService) {}
   create(createAccountDto: CreateAccountDto) {
-    return 'This action adds a new account';
+    return this.prismaService.account.create({
+      data: createAccountDto,
+    });
   }
 
   findAll() {
