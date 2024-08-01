@@ -43,4 +43,6 @@ Content-Type: application/json
 
 ### 
 
-GET http://localhost:3000/profile
+GET http://localhost:3000/auth/profile
+
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdkYWE1NTY1LTc1MzItNDk5Yy04N2VhLWViNGQ1ODUxNDg1NiIsImlhdCI6MTcyMjQ3MzYyNCwiZXhwIjoxNzIyNDg0NDI0fQ.jX-2jfkKAYOcrllRJwSHIJMm-XFu29sagk3DiCtUreA
