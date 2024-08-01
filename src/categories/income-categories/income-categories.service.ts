@@ -6,7 +6,11 @@ import { User } from 'src/auth/decorators/user.decorator';
 @Injectable()
 export class IncomeCategoriesService {
   constructor(private prismaService: PrismaService) {}
-  create(createIncomeCategoryDto: CreateIncomeCategoryDto) {}
+  create(createIncomeCategoryDto: CreateIncomeCategoryDto) {
+    return this.prismaService.incomeCategory.create({
+      data: createIncomeCategoryDto,
+    });
+  }
 
   findAll() {
     return `This action returns all incomeCategories`;
