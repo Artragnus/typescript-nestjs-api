@@ -13,7 +13,7 @@ export class IncomeCategoriesService {
   }
 
   findAll() {
-    return `This action returns all incomeCategories`;
+    return this.prismaService.incomeCategory.findMany();
   }
 
   findOne(id: number) {
