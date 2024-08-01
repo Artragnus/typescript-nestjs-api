@@ -13,8 +13,8 @@ Content-Type: application/json
 
 {
   "name": "John Doe",
-  "email": "teste@hotmail.com",
-  "password": "password"
+  "email": "auth@hotmail.com",
+  "password": "auth"
 }
 
 ###
@@ -37,6 +37,10 @@ POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
-  "email": "teste@hotmail.com",
-  "password": "password"
+  "email": "auth@hotmail.com",
+  "password": "auth"
 }
+
+### 
+
+GET http://localhost:3000/profile

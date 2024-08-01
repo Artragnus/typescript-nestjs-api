@@ -2,7 +2,7 @@ import * as bcrypt from 'bcrypt';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UsersService } from 'src/users/users.service';
-import { SignInDto } from './dto/sign-in.dto';
+import { OutputUserDto } from 'src/users/dto/output-user.dto';
 
 @Injectable()
 export class AuthService {
@@ -11,17 +11,8 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async signIn(signInDto: SignInDto): Promise<{ access_token: string }> {
-    const isValid = await this.validateUser(
-      signInDto.email,
-      signInDto.password,
-    );
-
-    if (!isValid) {
-      throw new UnauthorizedException();
-    }
-
-    const payload = { id: isValid.id };
+  async login(user: OutputUserDto): Promise<{ access_token: string }> {
+    const payload = { id: user.id };
 
     return {
       access_token: this.jwtService.sign(payload),
