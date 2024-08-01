@@ -9,8 +9,6 @@ import {
 } from 'class-validator';
 
 export class CreateAccountDto {
-  userId: string;
-
   @IsInt()
   @Min(0)
   @IsNumber()

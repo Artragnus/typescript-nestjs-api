@@ -18,12 +18,8 @@ import { User } from 'src/auth/decorators/user.decorator';
 export class AccountsController {
   constructor(private readonly accountsService: AccountsService) {}
   @Post()
-  create(@Body() createAccountDto: CreateAccountDto, @Request() req) {
-    const account = {
-      ...createAccountDto,
-      userId: req.user.id,
-    };
-    return this.accountsService.create(account);
+  create(@Body() createAccountDto: CreateAccountDto, @User() user) {
+    return this.accountsService.create(createAccountDto, user.id);
   }
 
   @Get()
