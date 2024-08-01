@@ -20,6 +20,7 @@ model User {
   password  String
   createdAt DateTime  @default(now())
   accounts  Account[]
+  Expense   Expense[]
 
   @@map("users")
 }
@@ -33,14 +34,6 @@ model AccountCategory {
   @@map("account_categories")
 }
 
-model ExpenseCategory {
-  id          Int     @id @unique @default(autoincrement())
-  name        String  @db.VarChar(255)
-  description String? @db.Text()
-
-  @@map("expense_categories")
-}
-
 model Account {
   id          Int             @id @unique @default(autoincrement())
   balance     Int             @default(0)
@@ -50,6 +43,29 @@ model Account {
   user        User            @relation(fields: [userId], references: [id])
   userId      String
   createdAt   DateTime        @default(now())
+  Expense     Expense[]
 
   @@map("accounts")
+}
+
+model ExpenseCategory {
+  id          Int       @id @unique @default(autoincrement())
+  name        String    @db.VarChar(255)
+  description String?   @db.Text()
+  Expense     Expense[]
+
+  @@map("expense_categories")
+}
+
+model Expense {
+  id          String          @id @unique @default(uuid())
+  amount      Int
+  createdAt   DateTime        @default(now())
+  description String          @db.Text()
+  category    ExpenseCategory @relation(fields: [categoryId], references: [id])
+  categoryId  Int
+  account     Account         @relation(fields: [accountId], references: [id])
+  accountId   Int
+  user        User            @relation(fields: [userId], references: [id])
+  userId      String
 }
