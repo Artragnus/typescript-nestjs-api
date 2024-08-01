@@ -68,10 +68,14 @@ model Expense {
   accountId   Int
   user        User            @relation(fields: [userId], references: [id])
   userId      String
+
+  @@map("expenses")
 }
 
 model IncomeCategory {
   id          Int     @id @unique @default(autoincrement())
   name        String  @db.VarChar(255)
   description String? @db.Text()
+
+  @@map("income_categories")
 }
