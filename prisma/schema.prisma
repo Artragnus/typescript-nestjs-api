@@ -33,6 +33,14 @@ model AccountCategory {
   @@map("account_categories")
 }
 
+model ExpenseCategory {
+  id          Int     @id @unique @default(autoincrement())
+  name        String  @db.VarChar(255)
+  description String? @db.Text()
+
+  @@map("expense_categories")
+}
+
 model Account {
   id          Int             @id @unique @default(autoincrement())
   balance     Int             @default(0)
