@@ -1,9 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { CreateIncomeDto } from './dto/create-income.dto';
 import { UpdateIncomeDto } from './dto/update-income.dto';
+import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class IncomesService {
+  constructor(prismaService: PrismaService) {}
   create(createIncomeDto: CreateIncomeDto) {
     return 'This action adds a new income';
   }
