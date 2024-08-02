@@ -6,7 +6,7 @@ import { PrismaService } from 'src/prisma/prisma.service';
 @Injectable()
 export class CreditCardsService {
   constructor(private prismaService: PrismaService) {}
-  create(createCreditCardDto: CreateCreditCardDto, userId: number) {
+  create(createCreditCardDto: CreateCreditCardDto, userId: string) {
     return this.prismaService.creditCard.create({
       data: {
         ...createCreditCardDto,
@@ -15,19 +15,28 @@ export class CreditCardsService {
     });
   }
 
-  findAll() {
-    return `This action returns all creditCards`;
+  findAll(userId: string) {
+    return this.prismaService.creditCard.findMany({
+      where: { userId },
+    });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} creditCard`;
+  findOne(id: number, userId: string) {
+    return this.prismaService.creditCard.findUniqueOrThrow({
+      where: { id, userId },
+    });
   }
 
-  update(id: number, updateCreditCardDto: UpdateCreditCardDto) {
-    return `This action updates a #${id} creditCard`;
+  update(id: number, updateCreditCardDto: UpdateCreditCardDto, userId: string) {
+    return this.prismaService.creditCard.update({
+      where: { id, userId },
+      data: updateCreditCardDto,
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} creditCard`;
+  remove(id: number, userId: string) {
+    return this.prismaService.creditCard.delete({
+      where: { id, userId },
+    });
   }
 }
