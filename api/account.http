@@ -1,6 +1,7 @@
 POST http://localhost:3000/accounts
 Content-Type: application/json
 Authorization: 
+
 {
   "balance": 0,
   "description": "Conta corrente",
@@ -10,3 +11,4 @@ Authorization:
 
 ####
 GET http://localhost:3000/accounts
+Authorization: 

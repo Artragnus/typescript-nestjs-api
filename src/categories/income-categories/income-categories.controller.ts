@@ -8,7 +8,6 @@ import {
   Delete,
 } from '@nestjs/common';
 import { IncomeCategoriesService } from './income-categories.service';
-import { CreateIncomeCategoryDto } from './dto/create-income-category.dto';
 
 @Controller('income-categories')
 export class IncomeCategoriesController {

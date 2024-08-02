@@ -18,20 +18,20 @@ export class AccountsService {
     });
   }
 
-  findOne(id: number, userId: string) {
+  findOne(id: string, userId: string) {
     return this.prismaService.account.findUniqueOrThrow({
       where: { id, userId },
     });
   }
 
-  update(id: number, updateAccountDto: UpdateAccountDto, userId: string) {
+  update(id: string, updateAccountDto: UpdateAccountDto, userId: string) {
     return this.prismaService.account.update({
       where: { id, userId },
       data: updateAccountDto,
     });
   }
 
-  remove(id: number, userId: string) {
+  remove(id: string, userId: string) {
     return this.prismaService.account.delete({
       where: { id, userId },
     });
