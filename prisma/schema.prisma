@@ -14,14 +14,15 @@ datasource db {
 }
 
 model User {
-  id        String    @id @unique @default(uuid())
-  email     String    @unique
-  name      String    @db.VarChar(255)
-  password  String
-  createdAt DateTime  @default(now())
-  accounts  Account[]
-  Expense   Expense[]
-  Income    Income[]
+  id         String       @id @unique @default(uuid())
+  email      String       @unique
+  name       String       @db.VarChar(255)
+  password   String
+  createdAt  DateTime     @default(now())
+  accounts   Account[]
+  Expense    Expense[]
+  Income     Income[]
+  CreditCard CreditCard[]
 
   @@map("users")
 }
@@ -46,6 +47,7 @@ model Account {
   createdAt   DateTime        @default(now())
   Expense     Expense[]
   Income      Income[]
+  CreditCard  CreditCard[]
 
   @@map("accounts")
 }
@@ -96,4 +98,18 @@ model Income {
   userId      String
 
   @@map("incomes")
+}
+
+model CreditCard {
+  id          Int      @id @unique @default(autoincrement())
+  limit       Int
+  description String   @db.Text()
+  closingDay  Int
+  dueDate     Int
+  Account     Account? @relation(fields: [accountId], references: [id])
+  accountId   Int?
+  user        User     @relation(fields: [userId], references: [id])
+  userId      String
+
+  @@map("credit_cards")
 }

@@ -13,6 +13,7 @@ import { AccountCategoriesModule } from './categories/account-categories/account
 import { ConfigModule } from '@nestjs/config';
 import { IncomeCategoriesModule } from './categories/income-categories/income-categories.module';
 import { IncomesModule } from './incomes/incomes.module';
+import { CreditCardsModule } from './credit-cards/credit-cards.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { IncomesModule } from './incomes/incomes.module';
     ExpensesModule,
     IncomeCategoriesModule,
     IncomesModule,
+    CreditCardsModule,
   ],
   controllers: [AppController],
   providers: [
