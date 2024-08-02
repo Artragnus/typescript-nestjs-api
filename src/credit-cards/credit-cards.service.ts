@@ -1,9 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { CreateCreditCardDto } from './dto/create-credit-card.dto';
 import { UpdateCreditCardDto } from './dto/update-credit-card.dto';
+import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class CreditCardsService {
+  constructor(private prismaService: PrismaService) {}
   create(createCreditCardDto: CreateCreditCardDto) {
     return 'This action adds a new creditCard';
   }
