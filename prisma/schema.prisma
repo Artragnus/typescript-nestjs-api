@@ -105,7 +105,7 @@ model CreditCard {
   description String @db.Text()
 
   closingDay Int
-  dueDate    DateTime
+  dueDate    Int
   Account    Account? @relation(fields: [accountId], references: [id])
   accountId  Int?
 
