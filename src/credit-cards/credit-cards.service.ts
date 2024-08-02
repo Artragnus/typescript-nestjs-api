@@ -6,8 +6,13 @@ import { PrismaService } from 'src/prisma/prisma.service';
 @Injectable()
 export class CreditCardsService {
   constructor(private prismaService: PrismaService) {}
-  create(createCreditCardDto: CreateCreditCardDto) {
-    return 'This action adds a new creditCard';
+  create(createCreditCardDto: CreateCreditCardDto, userId: number) {
+    return this.prismaService.creditCard.create({
+      data: {
+        ...createCreditCardDto,
+        userId,
+      },
+    });
   }
 
   findAll() {
