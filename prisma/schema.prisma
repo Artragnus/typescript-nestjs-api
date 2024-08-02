@@ -21,6 +21,7 @@ model User {
   createdAt DateTime  @default(now())
   accounts  Account[]
   Expense   Expense[]
+  Income    Income[]
 
   @@map("users")
 }
@@ -44,6 +45,7 @@ model Account {
   userId      String
   createdAt   DateTime        @default(now())
   Expense     Expense[]
+  Income      Income[]
 
   @@map("accounts")
 }
@@ -73,9 +75,25 @@ model Expense {
 }
 
 model IncomeCategory {
-  id          Int     @id @unique @default(autoincrement())
-  name        String  @db.VarChar(255)
-  description String? @db.Text()
+  id          Int      @id @unique @default(autoincrement())
+  name        String   @db.VarChar(255)
+  description String?  @db.Text()
+  Income      Income[]
 
   @@map("income_categories")
+}
+
+model Income {
+  id          String         @id @unique @default(uuid())
+  amount      Int
+  date        DateTime       @default(now())
+  description String         @db.Text()
+  category    IncomeCategory @relation(fields: [categoryId], references: [id])
+  categoryId  Int
+  account     Account        @relation(fields: [accountId], references: [id])
+  accountId   Int
+  user        User           @relation(fields: [userId], references: [id])
+  userId      String
+
+  @@map("incomes")
 }
