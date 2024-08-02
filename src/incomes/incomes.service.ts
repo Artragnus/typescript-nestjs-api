@@ -12,19 +12,28 @@ export class IncomesService {
     });
   }
 
-  findAll() {
-    return `This action returns all incomes`;
+  findAll(userId: string) {
+    return this.prismaService.income.findMany({
+      where: { userId },
+    });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} income`;
+  findOne(id: string, userId: string) {
+    return this.prismaService.income.findUniqueOrThrow({
+      where: { id, userId },
+    });
   }
 
-  update(id: number, updateIncomeDto: UpdateIncomeDto) {
-    return `This action updates a #${id} income`;
+  update(id: string, updateIncomeDto: UpdateIncomeDto, userId: string) {
+    return this.prismaService.income.update({
+      where: { id, userId },
+      data: { ...updateIncomeDto },
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} income`;
+  remove(id: string, userId: string) {
+    return this.prismaService.income.delete({
+      where: { id, userId },
+    });
   }
 }
