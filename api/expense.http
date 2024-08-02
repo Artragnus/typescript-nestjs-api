@@ -1,9 +1,9 @@
 GET http://localhost:3000/expenses
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRmYzNiZmUzLTFlZDYtNDE1ZS1hMDlkLWEwNWVlNTBiOTg0YSIsImlhdCI6MTcyMjU0NzQ3MywiZXhwIjoxNzIyNTU4MjczfQ._uRt9Hs4L6elcJ3w3C9UQvll4G_kDT8YLlDFvpgzJ0o
+Authorization: 
 ###
 POST http://localhost:3000/expenses
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRmYzNiZmUzLTFlZDYtNDE1ZS1hMDlkLWEwNWVlNTBiOTg0YSIsImlhdCI6MTcyMjU0NzQ3MywiZXhwIjoxNzIyNTU4MjczfQ._uRt9Hs4L6elcJ3w3C9UQvll4G_kDT8YLlDFvpgzJ0o
+Authorization: 
 
 {
   "amount": 100,
