@@ -5,9 +5,11 @@ import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class IncomesService {
-  constructor(prismaService: PrismaService) {}
-  create(createIncomeDto: CreateIncomeDto) {
-    return 'This action adds a new income';
+  constructor(private prismaService: PrismaService) {}
+  create(createIncomeDto: CreateIncomeDto, userId: string) {
+    return this.prismaService.income.create({
+      data: { ...createIncomeDto, userId },
+    });
   }
 
   findAll() {
