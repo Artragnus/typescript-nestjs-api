@@ -46,6 +46,7 @@ model Account {
   createdAt   DateTime        @default(now())
   Expense     Expense[]
   Income      Income[]
+  CreditCard  CreditCard[]
 
   @@map("accounts")
 }
@@ -96,4 +97,17 @@ model Income {
   userId      String
 
   @@map("incomes")
+}
+
+model CreditCard {
+  id          Int    @id @unique @default(autoincrement())
+  limit       Int
+  description String @db.Text()
+
+  closingDay Int
+  dueDate    DateTime
+  Account    Account? @relation(fields: [accountId], references: [id])
+  accountId  Int?
+
+  @@map("credit_cards")
 }
