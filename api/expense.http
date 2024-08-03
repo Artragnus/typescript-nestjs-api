@@ -1,6 +1,5 @@
 GET http://localhost:3000/expenses
-Authorization: 
-###
+Authorization:
 POST http://localhost:3000/expenses
 Content-Type: application/json
 Authorization: 
@@ -8,6 +7,6 @@ Authorization:
 {
   "amount": 100,
   "description": "Conta de luz",
-  "accountId": 1,
+  "accountId": 4,
   "categoryId": 1
 }
