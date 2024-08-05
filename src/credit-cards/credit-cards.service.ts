@@ -34,7 +34,7 @@ export class CreditCardsService {
     });
   }
 
-  remove(id: number, userId: string) {
+  remove(id: string, userId: string) {
     return this.prismaService.creditCard.delete({
       where: { id, userId },
     });

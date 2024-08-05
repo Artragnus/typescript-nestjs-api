@@ -28,7 +28,7 @@ export class CreditCardsController {
 
   @Get(':id')
   findOne(@Param('id') id: string, @User() user) {
-    return this.creditCardsService.findOne(+id, user.id);
+    return this.creditCardsService.findOne(id, user.id);
   }
 
   @Patch(':id')
@@ -37,11 +37,11 @@ export class CreditCardsController {
     @Body() updateCreditCardDto: UpdateCreditCardDto,
     @User() user,
   ) {
-    return this.creditCardsService.update(+id, updateCreditCardDto, user.id);
+    return this.creditCardsService.update(id, updateCreditCardDto, user.id);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string, @User() user) {
-    return this.creditCardsService.remove(+id, user.id);
+    return this.creditCardsService.remove(id, user.id);
   }
 }
