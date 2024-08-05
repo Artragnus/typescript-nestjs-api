@@ -13,5 +13,5 @@ export class CreateIncomeDto {
   categoryId: number;
 
   @IsNotEmpty()
-  accountId: number;
+  accountId: string;
 }
