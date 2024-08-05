@@ -19,7 +19,7 @@ export class CreateCreditCardDto {
 
   @IsNumber()
   @IsNotEmpty()
-  accountId: number;
+  accountId: string;
 
   @Max(31)
   @Min(1)

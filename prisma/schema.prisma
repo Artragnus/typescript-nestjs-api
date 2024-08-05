@@ -101,7 +101,7 @@ model Income {
 }
 
 model CreditCard {
-  id          Int      @id @unique @default(autoincrement())
+  id          String   @id @unique @default(uuid())
   limit       Int
   description String   @db.Text()
   closingDay  Int

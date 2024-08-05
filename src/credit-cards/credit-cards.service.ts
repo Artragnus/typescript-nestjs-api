@@ -21,20 +21,20 @@ export class CreditCardsService {
     });
   }
 
-  findOne(id: number, userId: string) {
+  findOne(id: string, userId: string) {
     return this.prismaService.creditCard.findUniqueOrThrow({
       where: { id, userId },
     });
   }
 
-  update(id: number, updateCreditCardDto: UpdateCreditCardDto, userId: string) {
+  update(id: string, updateCreditCardDto: UpdateCreditCardDto, userId: string) {
     return this.prismaService.creditCard.update({
       where: { id, userId },
       data: updateCreditCardDto,
     });
   }
 
-  remove(id: number, userId: string) {
+  remove(id: string, userId: string) {
     return this.prismaService.creditCard.delete({
       where: { id, userId },
     });
