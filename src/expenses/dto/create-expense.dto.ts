@@ -13,5 +13,5 @@ export class CreateExpenseDto {
   categoryId: number;
 
   @IsNotEmpty()
-  accountId: number;
+  accountId: string;
 }
