@@ -13,7 +13,7 @@ import { CreateExpenseCreditCardDto } from './dto/create-expenses-credit-cards.d
 import { UpdateExpenseCreditCardDto } from './dto/update-expense-credit-card.dto';
 
 @Controller('expenses/credit-cards')
-export class ExpensesController {
+export class ExpensesCreditCardsController {
   constructor(
     private readonly expenseCreditCardService: ExpensesCreditCardsService,
   ) {}
