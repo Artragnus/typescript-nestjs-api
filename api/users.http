@@ -1,23 +1,69 @@
-GET http://localhost:3000/users
+@hostname = http://localhost:3000
+
 ###
-GET http://localhost:3000/users/1
-###
-POST http://localhost:3000/users
+
+# @name createUser
+
+POST {{hostname}}/users
 Content-Type: application/json
 
 {
   "name": "John Doe",
-  "email": "auth@hotmail.com",
-  "password": "auth"
+  "email": "user@email.com",
+  "password": "password"
 }
+
 ###
-PATCH http://localhost:3000/users/0f55dc2f-1980-45de-9ec6-c4aa038d4e03
+
+# @name login
+
+POST {{hostname}}/auth/login
 Content-Type: application/json
+
 {
-  "name": "John Doe",
-  "email": "teste@gmail.com"
+  "email": "user@email.com",
+  "password": "password"
 }
+
 ###
-DELETE http://localhost:3000/users/28bb0ad8-3a6f-4a32-b479-59973e79ba4e
+
+@token = {{login.response.body.access_token}}
+
+###
+
+# @name profile
+
+GET {{hostname}}/auth/profile
+Authorization: Bearer {{token}}
+
+###
+
+@userId = {{profile.response.body.id}}
+
+###
+
+# @name getUsers
+
+GET {{hostname}}/users
+Authorization: Bearer {{token}}
+
+###
+
+# @name updateUser
+
+PATCH {{hostname}}/users/{{userId}}
+Content-Type: application/json
+
+{
+  "name": "New Name",
+  "email": "newemail@email.com"
+}
+
+###
+
+# @name deleteUser
+
+DELETE {{hostname}}/users/{{userId}}
+Authorization: Bearer {{token}}
 
 
