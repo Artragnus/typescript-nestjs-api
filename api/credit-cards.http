@@ -23,51 +23,53 @@ Authorization: Bearer {{token}}
 
 ###
 
-# @name createExpense
+# @name createCreditCard
 
-POST {{hostname}}/expenses
+POST {{hostname}}/credit-cards
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
- "amount": 100,
- "description": "Test expense",
- "categoryId": 1,
- "accountId": 1
+ "description": "Test credit card",
+ "limit": 1000,
+ "accountId": 1,
+ "dueDate": 10,
+ "closingDay": 5
 }
 
 ###
 
-# @name getExpenses
+# @name getCreditCards
 
-GET {{hostname}}/expenses
+GET {{hostname}}/credit-cards
 Authorization: Bearer {{token}}
 
 ###
 
-# @name getExpense
+# @name getCreditCard
 
-GET {{hostname}}/expenses/id?
+GET {{hostname}}/credit-cards/id?
 Authorization: Bearer {{token}}
 
 ###
 
-# @name updateExpense
+# @name updateCreditCard
 
-PUT {{hostname}}/expenses/id?
+PUT {{hostname}}/credit-cards/id?
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-  "amount": 100,
-  "description": "Test expense",
-  "categoryId": 1,
-  "accountId": 1
+"description": "Test credit card",
+"limit": 1000,
+"accountId": 1,
+"dueDate": 10,
+"closingDay": 5
 }
 
 ###
 
-# @name deleteExpense
+# @name deleteCreditCard
 
-DELETE {{hostname}}/expenses/id?
+DELETE {{hostname}}/credit-cards/id? 
 Authorization: Bearer {{token}}

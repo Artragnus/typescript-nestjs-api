@@ -23,51 +23,51 @@ Authorization: Bearer {{token}}
 
 ###
 
-# @name createExpense
+# @name createIncome
 
-POST {{hostname}}/expenses
+POST {{hostname}}/incomes
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
  "amount": 100,
- "description": "Test expense",
+ "description": "Test income",
  "categoryId": 1,
  "accountId": 1
 }
 
 ###
 
-# @name getExpenses
+# @name getIncomes
 
-GET {{hostname}}/expenses
+GET {{hostname}}/incomes
 Authorization: Bearer {{token}}
 
 ###
 
-# @name getExpense
+# @name getIncome
 
-GET {{hostname}}/expenses/id?
+GET {{hostname}}/incomes/id?
 Authorization: Bearer {{token}}
 
 ###
 
-# @name updateExpense
+# @name updateIncome
 
-PUT {{hostname}}/expenses/id?
+PUT {{hostname}}/incomes/id?
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-  "amount": 100,
-  "description": "Test expense",
-  "categoryId": 1,
-  "accountId": 1
+ "amount": 100,
+ "description": "Test income",
+ "categoryId": 1,
+ "accountId": 1
 }
 
 ###
 
-# @name deleteExpense
+# @name deleteIncome
 
-DELETE {{hostname}}/expenses/id?
+DELETE {{hostname}}/incomes/id?
 Authorization: Bearer {{token}}
