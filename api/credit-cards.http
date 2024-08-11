@@ -1,0 +1,75 @@
+@hostname = http://localhost:3000
+
+# @name login
+
+POST {{hostname}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "user@email.com",
+  "password": "password"
+}
+
+###
+
+@token = {{login.response.body.access_token}}
+
+###
+
+# @name profile
+
+GET {{hostname}}/auth/profile
+Authorization: Bearer {{token}}
+
+###
+
+# @name createCreditCard
+
+POST {{hostname}}/credit-cards
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+ "description": "Test credit card",
+ "limit": 1000,
+ "accountId": 1,
+ "dueDate": 10,
+ "closingDay": 5
+}
+
+###
+
+# @name getCreditCards
+
+GET {{hostname}}/credit-cards
+Authorization: Bearer {{token}}
+
+###
+
+# @name getCreditCard
+
+GET {{hostname}}/credit-cards/id?
+Authorization: Bearer {{token}}
+
+###
+
+# @name updateCreditCard
+
+PUT {{hostname}}/credit-cards/id?
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+"description": "Test credit card",
+"limit": 1000,
+"accountId": 1,
+"dueDate": 10,
+"closingDay": 5
+}
+
+###
+
+# @name deleteCreditCard
+
+DELETE {{hostname}}/credit-cards/id? 
+Authorization: Bearer {{token}}
