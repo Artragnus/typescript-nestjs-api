@@ -23,29 +23,7 @@ Authorization: Bearer {{token}}
 
 ###
 
-# @name createExpense
+# @name listCategories
 
-POST {{hostname}}/expenses
-Authorization: Bearer {{token}}
-Content-Type: application/json
-
-{
- "amount": 100,
- "description": "Test expense",
- "categoryId": 1,
- "accountId": 1
-}
-
-###
-
-# @name getExpenses
-
-GET {{hostname}}/expenses
-Authorization: Bearer {{token}}
-
-###
-
-# @name getExpense
-
-GET {{hostname}}/expenses/
+GET {{hostname}}/expense-categories
 Authorization: Bearer {{token}}
