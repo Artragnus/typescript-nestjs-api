@@ -47,5 +47,27 @@ Authorization: Bearer {{token}}
 
 # @name getExpense
 
-GET {{hostname}}/expenses/
+GET {{hostname}}/expenses/id?
+Authorization: Bearer {{token}}
+
+###
+
+# @name updateExpense
+
+PUT {{hostname}}/expenses/id?
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "amount": 100,
+  "description": "Test expense",
+  "categoryId": 1,
+  "accountId": 1
+}
+
+###
+
+# @name deleteExpense
+
+DELETE {{hostname}}/expenses/id?
 Authorization: Bearer {{token}}
