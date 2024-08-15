@@ -33,7 +33,7 @@ Content-Type: application/json
  "amount": 100,
  "description": "Test income",
  "categoryId": 1,
- "accountId": 1
+ "accountId": "23ce55c9-8b35-4735-9f28-9d78cbd75d1f"
 }
 
 ###
@@ -62,7 +62,7 @@ Content-Type: application/json
  "amount": 100,
  "description": "Test income",
  "categoryId": 1,
- "accountId": 1
+ "accountId": "23ce55c9-8b35-4735-9f28-9d78cbd75d1f"
 }
 
 ###
